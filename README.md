@@ -10,4 +10,4 @@ Field of Study: Computer Science, 3rd Semester
 2. [HW2: Setting Up Spring Boot](https://github.com/Suyogyart/SAD-2021/tree/master/HW2)
 
 #### Submitted Labs
-None
+1. Lab1: RESTful APIs, MVC with Spring Boot
