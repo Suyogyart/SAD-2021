@@ -80,7 +80,20 @@ Namely, it consists of `@RequestMapping`, which accepts the endpoint, request me
 
 `@RequestMapping` as the name suggests, maps the request on given path / endpoint, with appropriate request method, to the method inside the controller, where mapping of object and JSON objects are done very easily.
 
-### Major CRUD Operations and Endpoints Verification using Postman
+### Major CRUD Operations and Endpoints Verification
+
+**Using *ModelAndView* class**
+We can instantiate an object of `ModelAndView` class and add an object to it. We can specify in it's constructor regarding which view to return. This class allows to send data along with model data.
+![](img/model-and-view.png)
+
+The contents of `home.jsp` file, which is basically an HTML form.
+
+Once the request is completed, we can then show the details and work with using the model we have passed before.
+
+![](img/view-user.png)
+
+
+**Using *Postman***
 1. Open **h2-console** in web browser.
 2. Open **Postman** and start creating and sending requests.
 
