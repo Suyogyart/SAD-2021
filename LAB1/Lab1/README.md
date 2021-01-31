@@ -40,63 +40,50 @@ _**Note:** We need to make sure that all the variable names declared inside the 
 
 
 
-### Major CRUD Operations and Endpoints Verification
+### Custom Query in DAO
+We can create custom SQL queries in DAO using `@Query` annotation. Here, we are getting employee list sorted by employee names.
+
+![](img/dao.png)
+
+### Retrieving Lists and passing into JSPs
 
 **Using *ModelAndView* class**
 We can instantiate an object of `ModelAndView` class and add an object to it. We can specify in it's constructor regarding which view to return. This class allows to send data along with model data.
-![](img/model-and-view.png)
+![](img/employee-list-code.png)
 
-The contents of `home.jsp` file, which is basically an HTML form.
+Here the list of employees is retrieved from the dao, and is passed into the html using Attribute name of "employeeList". In the JSP, we refer to its object using this name.
 
-Once the request is completed, we can then show the details and work with using the model we have passed before.
+### Using c taglib to run JSTL codes
+![](img/jstl.png)
+Add JSTL to the maven dependencies in `pom.xml` file and c taglib directive which consists of JSTL URI to the `<head>` tag of the html form where we need to use c-tags.
 
-![](img/view-user.png)
+`<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>`.
 
+Now we will be able to use c-tags and perform loop operations inside our html tags.
 
-**Using *Postman***
-1. Open **h2-console** in web browser.
-2. Open **Postman** and start creating and sending requests.
+![](img/c-tag.png)
 
-**Get all users using CrudRepository**
-![](img/get-users.png)
-Notice how crud repository returns Java objects in its response.
+In this way, we retrieve the list we need using c-directives. We passed `employeeList` from the controller. 
 
-**Get all users using JpaRepository**
-![](img/get-usersJPA.png)
-JPA repository returns well formatted JSON/XML objects.
+### CRUD implementation
+**Getting all employees in ascending order by Name**
+![](img/employee-list.png)
+Web apps homepage or `/list` page gets list of employees from the database and shows in the table format. Each records can be edited and deleted. New records can be added too by clicking `ADD NEW EMPLOYEE` button.
 
----
+**Adding new employee**
+![](img/employee-add.png)
+We fill in the new employee details and then click on `ADD`, the form will send `POST` request and adds employee to the database
 
-**Get user by id using CrudRepository**
-![](img/get-user-by-id.png)
+**Adding result**
+![](img/employee-add-result.png)
+Once added to the database, Add successful message is shown with option to retrieve all employees again.
 
-**Get user by id using JpaRepository**
-![](img/get-userJPA-by-id.png)
+**Updated list of employees**
+![](img/refreshed-list.png)
+An updated list is shown with the names still in ascending order.
 
----
+**Edit and Delete employees**
+![](img/employee-edit.png)
+When edit button is pressed, record that needs to be edited is taken to the edit page with the current values. We can then change the values and update by clicking `UPDATE`. `DELETE` button deletes the record.
 
-**Add new user**
-![](img/add-user.png)
-Here we do `POST` request on `/userJPA` endpoint with JSON object in the request body. The JPA repository maps this JSON object into respective model and saves it into the database.
-
-![](img/add-user-console.png)
-
----
-
-**Update user if exists, Create if does't exist**
-![](img/update-user.png)
-Here we do `PUT` request on `/userJPA` endpoint with JSON object in the request body. The JPA repository maps this JSON object into respective model and updates it if its Id value does exist already in the database, otherwise saves as a new record into the database.
-
-![](img/update-user-console.png)
-
----
-
-**Delete user**
-![](img/delete-user.png)
-Here we perform `DELETE` request on `/userJPA/{uid}` endpoint where {uid} refers to the id of object to be deleted.
-
-![](img/delete-user-console.png)
-
----
-
-_**Note:** Notice how we can route all the requests related to one kind of entity using a single endpoint with change in request methods so easily with Repository interfaces in Spring Boot._
+`PUT` request is sent for Edit action and `DELETE` request is sent for Delete action.
