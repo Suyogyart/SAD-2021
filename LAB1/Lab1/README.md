@@ -15,6 +15,7 @@ The required dependencies can be downloaded from [MVN Repository](https://mvnrep
 4. **Tomcat Jasper** to load and render JSP pages
 5. **Jackson Dataformat** to allow our RESTful API to work with XML files
 6. **Spring Dev Tools** for faster development
+7. **JSTL** for using c-taglib directives in JSP
 
 ### Model Description
 ![](img/employee.png)
