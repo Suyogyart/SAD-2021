@@ -22,21 +22,23 @@ public class EmployeeController {
     private static final String EDIT_EMPLOYEE_SCREEN = "editEmployee.jsp";
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
-    public String home() {
-        // Show all users list in homepage
-        List<Employee> employeeList = dao.findAll();
-        System.out.println(employeeList);
-
-        return HOME_SCREEN;
+    public ModelAndView home() {
+        ModelAndView mv = new ModelAndView(HOME_SCREEN);
+        // Show all users list in homepage sorted by name
+        List<Employee> employeeList = dao.getEmployeeSortedByName();
+        mv.addObject("employeeList", employeeList);
+        System.out.println("Listing Employees\n\n" + employeeList + "\n\n");
+        return mv;
     }
 
     @RequestMapping(path = "/list", method = RequestMethod.GET)
-    public String list(Model model) {
-        // Show all users list in homepage
-        List<Employee> employeeList = dao.findAll();
+    public ModelAndView list(Employee emp) {
+        ModelAndView mv = new ModelAndView(HOME_SCREEN);
+        // Show all users list in homepage sorted by name
+        List<Employee> employeeList = dao.getEmployeeSortedByName();
+        mv.addObject("employeeList", employeeList);
         System.out.println("Listing Employees\n\n" + employeeList + "\n\n");
-        model.addAttribute("employeeList", employeeList);
-        return HOME_SCREEN;
+        return mv;
     }
 
     // Add Employee Screen
@@ -45,37 +47,57 @@ public class EmployeeController {
         return ADD_EMPLOYEE_SCREEN;
     }
 
+//    // Edit Employee Screen
+//    @RequestMapping(path="/edit", method = RequestMethod.GET)
+//    public String showEditForm() {
+//        return EDIT_EMPLOYEE_SCREEN;
+//    }
+
     // Edit Employee Screen
-    @RequestMapping(path="/edit", method = RequestMethod.GET)
-    public String showEditForm() {
-        return EDIT_EMPLOYEE_SCREEN;
+    @RequestMapping(path="/edit/{eid}", method = RequestMethod.GET)
+    public ModelAndView showEditForm(@PathVariable("eid") int eid) {
+        ModelAndView mv = new ModelAndView(EDIT_EMPLOYEE_SCREEN);
+        Employee emp = dao.getOne(eid);
+        mv.addObject("employee", emp);
+        return mv;
     }
 
     // Add Employee to DB
-    @RequestMapping(path="/employee", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @ResponseBody
-    public String addNewEmployee(Employee emp) {
+    @RequestMapping(path="/employee", method = RequestMethod.POST)
+    public ModelAndView addNewEmployee(Employee emp) {
+        ModelAndView mv = new ModelAndView("addResult.jsp");
         dao.save(emp);
-        System.out.println("Employee added. Returning to Homepage");
-        // Show home screen once added
-        return HOME_SCREEN;
+        System.out.println("Employee added. Showing employee details");
+
+        mv.addObject("emp", emp);
+        return mv;
     }
 
+//    // Edit or Add Employee to DB
+//    @RequestMapping(path="/employee", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+//    @ResponseBody
+//    public String editOrAddEmployee(Employee emp) {
+//       dao.save(emp);
+//        System.out.println("Employee updated. Returning to Homepage");
+//       return HOME_SCREEN;
+//    }
+
     // Edit or Add Employee to DB
-    @RequestMapping(path="/employee", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @ResponseBody
-    public String editOrAddEmployee(Employee emp) {
-       dao.save(emp);
+    @RequestMapping(path="/employee", method = RequestMethod.PUT)
+    public ModelAndView editOrAddEmployee(Employee emp) {
+        ModelAndView mv = new ModelAndView("editResult.jsp");
+        dao.save(emp);
+
         System.out.println("Employee updated. Returning to Homepage");
-       return HOME_SCREEN;
+        mv.addObject("emp", emp);
+        return mv;
     }
 
     // Delete Employee from DB
     @RequestMapping(path="/employee/{eid}", method = RequestMethod.DELETE)
-    @ResponseBody
     public String deleteUser(@PathVariable("eid") int eid) {
         Employee emp = dao.getOne(eid);
         dao.delete(emp);
-        return HOME_SCREEN;
+        return "Deleted Succesfully";
     }
 }

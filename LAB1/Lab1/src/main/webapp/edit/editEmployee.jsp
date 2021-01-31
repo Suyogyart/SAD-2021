@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Employee</title>
-    <link href="css\bootstrap.min.css" rel="stylesheet">
+    <link href="..\css\bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -18,30 +18,30 @@
                 <form action="employee" method="PUT">
                     <div class=" form-group">
                         <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="" value="${employee.name}">
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select class="form-control" id="gender">
+                        <select class="form-control" id="gender"  value="${employee.gender}">
                             <option>Male</option>
                             <option>Female</option>
                         </select>
                     </div>
                     <div class=" form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" class="form-control" placeholder="">
+                        <input type="text" name="address" id="address" class="form-control" placeholder="" value="${employee.address}">
                     </div>
                     <div class=" form-group">
                         <label for="salary">Salary</label>
-                        <input type="text" name="salary" id="salary" class="form-control" placeholder="">
+                        <input type="text" name="salary" id="salary" class="form-control" placeholder="" value="${employee.salary}">
                     </div>
                     <div class=" form-group">
                         <label for="value">Value</label>
-                        <input type="text" name="value" id="value" class="form-control" placeholder="">
+                        <input type="text" name="value" id="value" class="form-control" placeholder="" value="${employee.value}">
                     </div>
                     <div class="form-group">
                         <label for=positionlevel">Position Level</label>
-                        <select class="form-control" id="positionlevel">
+                        <select class="form-control" id="positionlevel" value="${employee.positionLevel}">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>

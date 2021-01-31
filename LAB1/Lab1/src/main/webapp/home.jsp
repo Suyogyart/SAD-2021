@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee Home</title>
-    <link href="css\bootstrap.min.css" rel="stylesheet">
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee Home</title>
+        <link href=".\css\bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -19,6 +20,7 @@
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Address</th>
+                        <th>Position Level</th>
                         <th>Salary</th>
                         <th>Value</th>
                         <th>Net Value</th>
@@ -26,130 +28,42 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <c:forEach items="${employeeList}" var="emp">
-                        <tr>
-                            <td scope="row"><c:out value="{emp.eid}"/></td>
-                            <td><c:out value="{emp.name}"/></td>
-                            <td><c:out value="{emp.gender}"/></td>
-                            <td><c:out value="{emp.address}"/></td>
-                            <td><c:out value="{emp.salary}"/></td>
-                            <td><c:out value="{emp.value}"/></td>
-                            <td><c:out value="{emp.netvalue}"/></td>
+                    <c:forEach items="${employeeList}" var="emp">
+                        <tr id="dataRow" class="table-light">
+                            <td scope="row">
+                                <c:out value="${emp.eid}" />
+                            </td>
                             <td>
-                                <button type="button" class="btn btn-primary">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                <c:out value="${emp.name}" />
+                            </td>
+                            <td>
+                                <c:out value="${emp.gender}" />
+                            </td>
+                            <td>
+                                <c:out value="${emp.address}" />
+                            </td>
+                            <td align="center">
+                                <c:out value="${emp.positionLevel}" />
+                            </td>
+                            <td>
+                                <c:out value="${emp.salary}" />
+                            </td>
+                            <td>
+                                <c:out value="${emp.value}" />
+                            </td>
+                            <td class="netvalue">
+                                <c:out value="${emp.netValue}" />
+                            </td>
+                            <td>
+                                <a href = "edit/${emp.eid}" class="btn btn-primary">Edit</a>  <a href = "delete/${emp.eid}" class="btn btn-danger">Delete</a>
+
+                                <!--
+                                <form action="delete/${emp.eid}" method="delete">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form> -->
                             </td>
                         </tr>
-                    </c:forEach> -->
-                    <tr class="table-light">
-                        <td scope="row">1</td>
-                        <td>Suyogya Ratna</td>
-                        <td>Male</td>
-                        <td>AIT</td>
-                        <td>24000</td>
-                        <td>10000</td>
-                        <td>14000</td>
-                        <td>
-                            <div class="row">
-                                <form action="edit" method="GET">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
-                                </form>
-                                &nbsp;&nbsp;
-                                <form action="employee" method="DELETE">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                            
-                        </td>
-                    </tr>
-
-                    <tr class="table-light">
-                        <td scope="row">1</td>
-                        <td>Suyogya Ratna</td>
-                        <td>Male</td>
-                        <td>AIT</td>
-                        <td>24000</td>
-                        <td>10000</td>
-                        <td>14000</td>
-                        <td>
-                            <div class="row">
-                                <form action="edit" method="GET">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
-                                </form>
-                                &nbsp;&nbsp;
-                                <form action="employee" method="DELETE">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                            
-                        </td>
-                    </tr>
-
-                    <tr class="table-light">
-                        <td scope="row">1</td>
-                        <td>Suyogya Ratna</td>
-                        <td>Male</td>
-                        <td>AIT</td>
-                        <td>24000</td>
-                        <td>10000</td>
-                        <td>14000</td>
-                        <td>
-                            <div class="row">
-                                <form action="edit" method="GET">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
-                                </form>
-                                &nbsp;&nbsp;
-                                <form action="employee" method="DELETE">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                            
-                        </td>
-                    </tr>
-
-                    <tr class="table-light">
-                        <td scope="row">1</td>
-                        <td>Suyogya Ratna</td>
-                        <td>Male</td>
-                        <td>AIT</td>
-                        <td>24000</td>
-                        <td>10000</td>
-                        <td>14000</td>
-                        <td>
-                            <div class="row">
-                                <form action="edit" method="GET">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
-                                </form>
-                                &nbsp;&nbsp;
-                                <form action="employee" method="DELETE">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                            
-                        </td>
-                    </tr>
-
-                    <tr class="table-light">
-                        <td scope="row">1</td>
-                        <td>Suyogya Ratna</td>
-                        <td>Male</td>
-                        <td>AIT</td>
-                        <td>24000</td>
-                        <td>10000</td>
-                        <td>14000</td>
-                        <td>
-                            <div class="row">
-                                <form action="edit" method="GET">
-                                    <button type="submit" class="btn btn-primary">Edit</button>
-                                </form>
-                                &nbsp;&nbsp;
-                                <form action="employee" method="DELETE">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                            
-                        </td>
-                    </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

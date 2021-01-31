@@ -46,8 +46,8 @@ public class Employee {
         return gender;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setGender(String gender) {
+        this.gender = Gender.valueOf(gender);
     }
 
     public String getAddress() {
@@ -90,18 +90,18 @@ public class Employee {
         this.netvalue = netValue;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "eid=" + eid +
-                ", name='" + name + '\'' +
-                ", gender=" + gender.toString() +
-                ", address='" + address + '\'' +
-                ", salary=" + salary +
-                ", value=" + value +
-                ", netValue=" + netvalue +
-                ", positionLevel=" + positionlevel +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Employee{" +
+//                "eid=" + eid +
+//                ", name='" + name + '\'' +
+//                ", gender=" + gender.toString() +
+//                ", address='" + address + '\'' +
+//                ", salary=" + salary +
+//                ", value=" + value +
+//                ", netValue=" + netvalue +
+//                ", positionLevel=" + positionlevel +
+//                '}';
+//    }
 }
 
