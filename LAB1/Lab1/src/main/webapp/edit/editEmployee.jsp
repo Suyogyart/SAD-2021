@@ -15,7 +15,7 @@
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
                 <h2>Edit Employee</h2>
-                <form action="employee" method="PUT">
+                <form action="employee" method="POST">
                     <div class=" form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="" value="${employee.name}">
@@ -23,8 +23,8 @@
                     <div class="form-group">
                         <label for="gender">Gender</label>
                         <select class="form-control" id="gender"  value="${employee.gender}">
-                            <option>Male</option>
-                            <option>Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                     </div>
                     <div class=" form-group">
@@ -41,11 +41,11 @@
                     </div>
                     <div class="form-group">
                         <label for=positionlevel">Position Level</label>
-                        <select class="form-control" id="positionlevel" value="${employee.positionLevel}">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                        <select class="form-control" id="positionlevel" value="${employee.positionlevel}">
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
                         </select>
                     </div>
                     <br>

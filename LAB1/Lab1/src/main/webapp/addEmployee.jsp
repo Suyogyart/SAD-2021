@@ -22,9 +22,9 @@
           </div>
           <div class="form-group">
             <label for="gender">Gender</label>
-            <select class="form-control" id="gender">
-              <option>Male</option>
-              <option>Female</option>
+            <select class="form-control" name="gender" id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
           </div>
           <div class=" form-group">
@@ -40,12 +40,12 @@
             <input type="text" name="value" id="value" class="form-control" placeholder="">
           </div>
           <div class="form-group">
-            <label for=positionlevel">Position Level</label>
-            <select class="form-control" id="positionlevel">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
+            <label for="positionlevel">Position Level</label>
+            <select class="form-control" id="positionlevel" name="positionLevel">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
           </div>
           <br>
