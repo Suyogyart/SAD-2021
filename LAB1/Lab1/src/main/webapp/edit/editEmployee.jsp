@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Employee</title>
@@ -22,9 +23,19 @@
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <select class="form-control" id="gender"  value="${employee.gender}">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                        <select class="form-control" name="gender" id="gender" value="${employee.gender}">
+                            <c:forEach items="${genders}" var="gender">
+
+                              <c:choose>
+                                 <c:when test="${employee.gender == gender}">
+                                     <option value="${gender}" selected="selected">${gender}</option>
+                                 </c:when>
+                                 <c:otherwise>
+                                     <option>${gender}</option>
+                                 </c:otherwise>
+                              </c:choose>
+
+                            </c:forEach>
                         </select>
                     </div>
                     <div class=" form-group">
@@ -40,12 +51,20 @@
                         <input type="text" name="value" id="value" class="form-control" placeholder="" value="${employee.value}">
                     </div>
                     <div class="form-group">
-                        <label for=positionlevel">Position Level</label>
-                        <select class="form-control" id="positionlevel" value="${employee.positionlevel}">
-                            <option value=1>1</option>
-                            <option value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
+                        <label for="positionlevel">Position Level</label>
+                        <select class="form-control" name="positionLevel" id="positionlevel">
+                            <c:forEach items="${positionLevels}" var="level">
+
+                                <c:choose>
+                                    <c:when test="${employee.positionLevel == level}">
+                                        <option value="${level}" selected="selected">${level}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option>${level}</option>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </c:forEach>
                         </select>
                     </div>
                     <br>

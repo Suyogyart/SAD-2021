@@ -3,9 +3,7 @@ package com.example.Lab1.controller;
 import com.example.Lab1.dao.EmployeeDao;
 import com.example.Lab1.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,6 +18,7 @@ public class EmployeeController {
     private static final String HOME_SCREEN = "home.jsp";
     private static final String ADD_EMPLOYEE_SCREEN = "addEmployee.jsp";
     private static final String EDIT_EMPLOYEE_SCREEN = "editEmployee.jsp";
+    private int[] positionLevels = {1, 2, 3, 4};
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView home() {
@@ -43,8 +42,11 @@ public class EmployeeController {
 
     // Add Employee Screen
     @RequestMapping(path="/add", method = RequestMethod.GET)
-    public String showAddForm() {
-        return ADD_EMPLOYEE_SCREEN;
+    public ModelAndView showAddForm(Employee emp) {
+        ModelAndView mv = new ModelAndView(ADD_EMPLOYEE_SCREEN);
+        mv.addObject("genders", Employee.Gender.values());
+        mv.addObject("positionLevels", positionLevels);
+        return mv;
     }
 
 //    // Edit Employee Screen
@@ -59,6 +61,8 @@ public class EmployeeController {
         ModelAndView mv = new ModelAndView(EDIT_EMPLOYEE_SCREEN);
         Employee emp = dao.getOne(eid);
         mv.addObject("employee", emp);
+        mv.addObject("genders", Employee.Gender.values());
+        mv.addObject("positionLevels", positionLevels);
         return mv;
     }
 

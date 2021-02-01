@@ -55,7 +55,7 @@
                                 <c:out value="${emp.netValue}" />
                             </td>
                             <td>
-                                <a href = "edit/${emp.eid}" class="btn btn-primary">Edit</a>  <a href = "delete/${emp.eid}" class="btn btn-danger">Delete</a>
+                                <a href = "edit/${emp.eid}" class="btn btn-primary btn-sm">Edit</a>  <a href = "delete/${emp.eid}" class="btn btn-danger btn-sm">Delete</a>
 
                                 <!--
                                 <form action="delete/${emp.eid}" method="delete">

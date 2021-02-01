@@ -1,6 +1,8 @@
 package com.example.Lab1.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -44,6 +46,10 @@ public class Employee {
 
     public Gender getGender() {
         return gender;
+    }
+
+    public String getStringGender() {
+        return gender.toString();
     }
 
     public void setGender(String gender) {
@@ -90,18 +96,18 @@ public class Employee {
         this.netvalue = netValue;
     }
 
-//    @Override
-//    public String toString() {
-//        return "Employee{" +
-//                "eid=" + eid +
-//                ", name='" + name + '\'' +
-//                ", gender=" + gender.toString() +
-//                ", address='" + address + '\'' +
-//                ", salary=" + salary +
-//                ", value=" + value +
-//                ", netValue=" + netvalue +
-//                ", positionLevel=" + positionlevel +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "eid=" + eid +
+                ", name='" + name + '\'' +
+                ", gender=" + gender.toString() +
+                ", address='" + address + '\'' +
+                ", salary=" + salary +
+                ", value=" + value +
+                ", netValue=" + netvalue +
+                ", positionLevel=" + positionlevel +
+                '}';
+    }
 }
 

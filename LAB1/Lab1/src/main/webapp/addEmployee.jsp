@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add new employee</title>
@@ -23,8 +24,13 @@
           <div class="form-group">
             <label for="gender">Gender</label>
             <select class="form-control" name="gender" id="gender">
+              <c:forEach items="${genders}" var="gender">
+                <option value="${gender}">${gender}</option>
+              </c:forEach>
+              <!--
               <option value="Male">Male</option>
               <option value="Female">Female</option>
+              -->
             </select>
           </div>
           <div class=" form-group">
@@ -42,10 +48,9 @@
           <div class="form-group">
             <label for="positionlevel">Position Level</label>
             <select class="form-control" id="positionlevel" name="positionLevel">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
+              <c:forEach items="${positionLevels}" var="level">
+                <option value="${level}">${level}</option>
+              </c:forEach>
             </select>
           </div>
           <br>

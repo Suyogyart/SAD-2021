@@ -32,6 +32,8 @@ Here are the key concepts in Employee model to know about:
 
 * `@Transient` says that we don't need a separate column in database because it is an derived attribute, i.e. it can be calculated from the values already stored in the database.
 
+* The receiving parameters in the `setters` of any properties should be same with the value sent in `name` attribute in the HTML form.
+
 _**Note:** We need to make sure that all the variable names declared inside the entity should have lowercased names. In my case, camelCase didn't work too._
 
 ### Static SQL Queries for initial configuration
