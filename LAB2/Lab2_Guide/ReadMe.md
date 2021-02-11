@@ -6,8 +6,8 @@
 ```
 Host: smtp.mailtrap.io
 Port: 25 or 465 or 587 or 2525
-Username: b8f2559ba7380d
-Password: 32849b85e09d89
+Username: <your username>
+Password: <your password>
 Auth: PLAIN, LOGIN and CRAM-MD5
 TLS: Optional (STARTTLS on all ports)
 ```
