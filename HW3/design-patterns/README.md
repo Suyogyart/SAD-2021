@@ -28,6 +28,9 @@ Structure of User with @Builder and @Data
 GET Request for User 2 from Postman
 ![](img/builder/builder_lombok_getUser2_postman.png)
 
+
+---
+
 ### 2. FACTORY PATTERN (CREATIONAL)
 
 #### Advantages
@@ -65,6 +68,7 @@ path variables.
 ![](img/factory/admin.png)
 ![](img/factory/member.png)
 
+---
 
 ### 3. ADAPTER PATTERN (STRUCTURAL)
 #### Advantages
@@ -91,6 +95,8 @@ Here we make CsvFormatter compatible with TextFormattable interface. This is ach
 ![](img/adapter/adapterTest.png)
 The `NewLineFormatter` formats the lines into new lines.
 Next, we create a `CsvFormatter` and pass it to the `CsvAdapter` which implements `TextFormattable` interface.
+
+---
 
 ### 4. FACADE PATTERN (STRUCTURAL)
 
@@ -134,12 +140,65 @@ and hence handles logic for different services.
 
 Here the client uses `Facade` to generate the appropriate reports.
 
+---
+
 ### 5. STATE DESIGN PATTERN (BEHAVIORAL)
 #### Advantages
+* Useful when maintaining an entity that contains multiple transition states 
+* Avoids coupling between client and state changes
+* Encourages developing of abstract class or interface, and defining concrete class that implement abstract
+interface or abstract class for each state
+  
+Here we explore state changes in player attributes in attack, defense and agility
 
-### 6. CHAIN OF RESPONSIBILITY (BEHAVIORAL)
+#### Creating Interface
+Here we create state interface where we declare methods for changing the state of object that implements this interface
+![](img/state/stateInterface.png)
+
+#### Create class that implements State interface
+![](img/state/swordman.png)
+
+#### Creating an object and invoking methods from the State interface
+![](img/state/stateTest.png)
+
+#### Results after applying different states to the class
+![](img/state/characterOutput.png)
+
+---
+
+### 6. OBSERVER PATTERN (BEHAVIORAL)
 #### Advantages
+* Allows to observe a subject and get notified when subject sends update.
+* Reduces coupling
 
+#### Creating Subject interface
+This interface is responsible for registering, unregistering and notifying observers.
+It also gets update for an observer from the subject
+
+![](img/observer/subjectInterface.png)
+
+#### Creating Observer interface
+This interface is implemented by those concrete classes who subscribe to the specific subject
+![](img/observer/observerInterface.png)
+
+#### Creating concrete class
+Topic is a concrete class which implements subject. Here Topic is a subject and upon its creation,
+new empty list is initialized to store observers
+![](img/observer/topic.png)
+
+#### Creating an observer named TopicSubscriber that observes Topic as subject
+![](img/observer/topicSubscriber.png)
+
+#### TopicSubscriber can post messages and notify observers
+![](img/observer/postMessage.png)
+
+#### Creating Topic and making observers observe / subscribe to different topics
+![](img/observer/observerTest.png)
+
+#### Result: Gets message only when observer is registered and message is posted by the Subjects
+![](img/observer/result.png)
+  
+---
 
 
 
