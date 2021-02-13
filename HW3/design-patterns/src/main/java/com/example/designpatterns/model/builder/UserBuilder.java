@@ -1,4 +1,4 @@
-package com.example.designpatterns.model;
+package com.example.designpatterns.model.builder;
 
 public class UserBuilder {
     private int uid;

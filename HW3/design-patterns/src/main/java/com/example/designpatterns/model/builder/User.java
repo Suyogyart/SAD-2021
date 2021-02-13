@@ -1,4 +1,4 @@
-package com.example.designpatterns.model;
+package com.example.designpatterns.model.builder;
 
 import lombok.Builder;
 import lombok.Data;

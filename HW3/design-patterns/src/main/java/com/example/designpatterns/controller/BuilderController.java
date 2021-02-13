@@ -1,7 +1,7 @@
 package com.example.designpatterns.controller;
 
-import com.example.designpatterns.model.User;
-import com.example.designpatterns.model.UserBuilder;
+import com.example.designpatterns.model.builder.User;
+import com.example.designpatterns.model.builder.UserBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
