@@ -10,6 +10,7 @@
 
 #### Without using Lombok
 Creating User 1
+
 ![](img/builder/builder_getUser1.png)
 
 GET Request for User 1 from Postman
