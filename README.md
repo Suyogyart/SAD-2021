@@ -11,7 +11,7 @@ Field of Study: Computer Science, 3rd Semester
 #### Homeworks
 1. [HW1: Architecture Tradeoffs](https://github.com/Suyogyart/SAD-2021/tree/master/HW1)
 2. [HW2: Setting Up Spring Boot](https://github.com/Suyogyart/SAD-2021/tree/master/HW2)
-3. HW3: Design Patterns 
+3. [HW3: Design Patterns](https://github.com/Suyogyart/SAD-2021/tree/master/HW3) 
     3.1 [Guide](https://github.com/Suyogyart/SAD-2021/tree/master/HW3/design-patterns) 
     3.2 [Group Assignment](https://github.com/shubhanginigon/Bid-Buy-Sell-Project)
 
