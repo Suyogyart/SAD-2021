@@ -18,7 +18,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration // This file will be run at runtime
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Autowired
     private MyUserDetailsService userDetailsService;
 
@@ -44,10 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // Second function -> authorization
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // h2-console, /login, /register - anyone
-        // admin/** - admin
-        // In any page, /** - ROLE_USER, ROLE_ADMIN
-        // premium/** - ROLE_ADMIN, ROLE_PREMIUM_USER
+
         http
                 .csrf().disable() // disable so that h2 works
                 .authorizeRequests()

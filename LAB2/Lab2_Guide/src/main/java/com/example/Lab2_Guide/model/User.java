@@ -20,7 +20,8 @@ public class User {
     private int id;
 
     @Column(nullable = false) // database level
-    @NotBlank(message = "This field is required.") // UI level, no need to use JavaScript, Supported by validation dependency
+    // UI level, no need to use JavaScript, Supported by validation dependency
+    @NotBlank(message = "This field is required.")
     private String username;
 
     @NotBlank(message = "This field is required.")
@@ -40,7 +41,7 @@ public class User {
     // one user has many roles
     // one role has many roles
     // many to many relationship
-
+    @ManyToMany(fetch = FetchType.EAGER) // Creates an intermediate table
     //User_id, Role_id (by default)
     // If we don't like this name, we can use @JoinTable (complicated)
     // (fetch) - if I get one user, should JPA also get the roles of that user? (EAGER INITIALIZATION)
@@ -49,7 +50,6 @@ public class User {
     // In many to many relationship, who is parent
     // If parent is saved, child is saved
     // Or if child is saved, parent is not saved
-    @ManyToMany(fetch = FetchType.EAGER) // Creates an intermediate table
     @JsonBackReference
     private Set<Role> roles;
 
