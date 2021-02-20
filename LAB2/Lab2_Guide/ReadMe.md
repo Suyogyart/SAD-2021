@@ -2,6 +2,8 @@
 
 _**Objective:** To implement Spring Security classes to authenticate Users based on their roles in the system._
 
+## App Pages and Forms
+[Jump to App Screenshots](#app-screenshots)
 
 ## Required Dependencies
 The required dependencies can be downloaded from [MVN Repository](https://mvnrepository.com) website.
@@ -202,4 +204,9 @@ Controller class handles the **http requests**, and shows appropriate **views**.
 
 We use `c` taglibs to run JSTL in our views. JSTL allows us to handle logics inside our views.
 
-
+## App Screenshots
+![](img/ui_login.png)
+![](img/ui_register.png)
+![](img/ui_register_errors.png)
+![](img/ui_home.png)
+![](img/ui_logout.png)
