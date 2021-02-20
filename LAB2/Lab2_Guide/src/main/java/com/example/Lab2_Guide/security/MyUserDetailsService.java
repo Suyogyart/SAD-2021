@@ -8,8 +8,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
-
-
 @Service
 // What is @Service
 // How is different from @Component or @Controller

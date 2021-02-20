@@ -1,6 +1,5 @@
 package com.example.Lab2_Guide.security;
 
-import com.example.Lab2_Guide.security.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,34 +9,34 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.stereotype.Component;
 
 // for setting up
 // authentication and authorization
 // authentication - login/logout
 // authorization - who can access which part
-@Configuration // This file will be run at runtime
 @EnableWebSecurity
+@Configuration // This file will be run at runtime
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     @Autowired
     private MyUserDetailsService userDetailsService;
 
     // I want an encoder that will encode password
     // So this is singleton
-    @Bean // Method Level
-    // This method now can be autowired
+    @Bean // Method Level // This method now can be autowired
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     // Override two functions
     // First function -> Authentication
+    @Autowired
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // what are the userDetailsService
         // what are password encoder
-        // When we launch the app AuthBulder gets called
+        // When we launch the app AuthBuilder gets called
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(bCryptPasswordEncoder());
     }
@@ -60,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login").permitAll()
                     .defaultSuccessUrl("/home", true)
                 .and()
-                .logout().invalidateHttpSession(true)
+                .logout()
+                    .invalidateHttpSession(true)
                     .clearAuthentication(true)
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/logout-success").permitAll();

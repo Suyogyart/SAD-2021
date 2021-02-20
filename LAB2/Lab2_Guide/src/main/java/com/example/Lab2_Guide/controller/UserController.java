@@ -57,6 +57,7 @@ public class UserController {
 
     @RequestMapping(path = "/register", method = RequestMethod.POST)
     public String addUser(@Valid @ModelAttribute("user") User user, BindingResult bindingResult) {
+        // Validate user information, check for errors, then save
         userValidator.validate(user, bindingResult);
 
         if(bindingResult.hasErrors()) {
