@@ -36,6 +36,7 @@ In this project, main models are `User` and `Role`. These represent entities and
    
 ### User Model
 ![](img/userModel.png)
+
 `@Entity`: Represents a table in the database
 
 `@Id`: Determines primary key.
@@ -58,6 +59,7 @@ In this project, main models are `User` and `Role`. These represent entities and
 
 ### Role Model
 ![](img/roleModel.png)
+
 `@ManyToMany(mappedBy = "roles"`: Tells JPA that it is already mapped in User Model. It prevents
 from getting duplicate tables.
 
@@ -66,12 +68,14 @@ from getting duplicate tables.
 ## Create DAOs
 ![](img/userJPADao.png)
 ![](img/roleJPADao.png)
+
 DAO (Data Access Object) is created for retrieveing the data from the database of
 the entities we have. We will use this data access layer from `Service` layer.
 
 
 ## Insert Default Roles
 ![](img/data.png)
+
 Create `data.sql` file inside Resources and write SQL Queries to insert 
 Roles in to Role table.
 
@@ -102,12 +106,14 @@ What is @Service? How is it different from @Component or @Controller?
 
 ## Email Service Implementation
 ![](img/emailServiceImpl.png)
+
 `@Value`: Binds the variable to the value in **application.properties**
 
 This Service class implements **EmailService** interface and performs mail sending feature using **Java Mail Sender**.
 
 ## User Service Implementation
 ![](img/userServiceImpl.png)
+
 This Service class is responsible to perform logical operations of **User** class.
 
 It acceses **UserJPADao**, **BCryptPasswordEncoder**, **EmailService** to do internal logic.
@@ -122,6 +128,7 @@ It acceses **UserJPADao**, **BCryptPasswordEncoder**, **EmailService** to do int
 ## User Details Implementation (Built-In)
 ![](img/userDetailsImpl.png)
 ![](img/userDetailsImpl2.png)
+
 This class implements **UserDetails** which is the built-in class that provides authority grants to users.
 
 Here, we add roles of the logged in user as a granted authority.
@@ -130,11 +137,13 @@ Also we set several values for the authorized user.
 
 ## User Details Service Implementation (Built-In)
 ![](img/myUserDetailsService.png)
+
 This Service class implements **UserDetails** interface, and it is a concrete implementation
 of how users will be created with authorities and will return **UserDetails** object for the user.
 
 ## Spring Security Config Class Implementation
 ![](img/securityConfig.png)
+
 Here, this file controls authentication and authorization logic, and password encoders
 
 We use **BCryptPasswordEncoder** as a **Bean**. Adding as a bean allows other classes to use it and **Autowired** it.
@@ -156,6 +165,7 @@ on successful logout.
 
 ## User Validator Implementation
 ![](img/userValidator.png)
+
 This class implements `Validator` interface which provides functions to store **errors** as a result of **validation rules**.
 
 `@Component`: Makes the class singleton and allows it to be **Autowired** in other classes.
@@ -165,6 +175,7 @@ Controller class handles the **http requests**, and shows appropriate **views**.
 
 ![](img/register.png)
 ![](img/home.png)
+
 `@Valid`: Tells Spring Boot to apply validator to the attribute
 
 `Model model`: Similar to **ModelAndView**, allows to add **ModelAttribute** to pass into views.
@@ -188,6 +199,7 @@ Controller class handles the **http requests**, and shows appropriate **views**.
 
 
 ![](img/dashboard.png)
+
 We use `c` taglibs to run JSTL in our views. JSTL allows us to handle logics inside our views.
 
 
