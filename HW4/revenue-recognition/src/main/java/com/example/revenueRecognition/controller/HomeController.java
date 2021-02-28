@@ -60,8 +60,6 @@ public class HomeController {
         List<Object> contracts = new ArrayList<>();
         ResultSet rs = contractGateway.findAll();
 
-        // very bad coding practice but if you want to stick with table data gateway...
-        // Ideally, you want to create a mapper that maps table columns to object fields
         try {
             while (rs.next()) {
                 Object[] arr = new Object[4];
@@ -71,7 +69,6 @@ public class HomeController {
                 arr[2] = rs.getString("revenue");
                 arr[3] = rs.getString("datesigned");
                 contracts.add(arr);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
