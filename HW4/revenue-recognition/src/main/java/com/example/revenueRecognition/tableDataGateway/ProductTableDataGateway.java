@@ -6,10 +6,7 @@ import javax.sql.DataSource;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetFactory;
 import javax.sql.rowset.RowSetProvider;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 @Repository
 public class ProductTableDataGateway extends AbstractTableDataGateway {
@@ -23,56 +20,53 @@ public class ProductTableDataGateway extends AbstractTableDataGateway {
     }
 
     public ResultSet findAll() {
-        try {
-            Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(SQL_GET_ALL);
-
-            ResultSet rs = ps.executeQuery();
-            // Convert result to CachedRowSet for better efficiency
-            // CachedRowSet stores data in memory so you can work on the data
-            // without keeping the connection open all the time
-            RowSetFactory factory = RowSetProvider.newFactory();
-            CachedRowSet crs = factory.createCachedRowSet();
-            crs.populate(rs);
-
-            return crs;
+        try (
+                Connection connection = getConnection();
+                PreparedStatement ps = connection.prepareStatement(SQL_GET_ALL);
+        ) {
+            try (ResultSet rs = ps.executeQuery()) {
+                //convert result to CachedRowSet for better efficiency
+                //CachedRowSet stores data in memory so you can work on the data without keeping
+                //the connection open all the time.
+                RowSetFactory factory = RowSetProvider.newFactory();
+                CachedRowSet crs = factory.createCachedRowSet();
+                crs.populate(rs);
+                return crs;
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
-
     public ResultSet findOne(int productId) {
-        try {
-            Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(SELECT_PRODUCT_SQL);
-
+        try (
+                Connection connection = getConnection();
+                PreparedStatement ps = connection.prepareStatement(SELECT_PRODUCT_SQL);
+        ) {
             ps.setInt(1, productId);
-
-            ResultSet rs = ps.executeQuery();
-            RowSetFactory factory = RowSetProvider.newFactory();
-            CachedRowSet crs = factory.createCachedRowSet();
-            crs.populate(rs);
-
-            return crs;
+            try (ResultSet rs = ps.executeQuery()) {
+                RowSetFactory factory = RowSetProvider.newFactory();
+                CachedRowSet crs = factory.createCachedRowSet();
+                crs.populate(rs);
+                return crs;
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }
-
     public int insert(String name, String type) {
-        try {
-            Connection connection = getConnection();
-            PreparedStatement ps = connection.prepareStatement(INSERT_PRODUCT_SQL);
-
+        try (
+                Connection connection = getConnection();
+                PreparedStatement ps = connection.prepareStatement(INSERT_PRODUCT_SQL, Statement.RETURN_GENERATED_KEYS);
+        ) {
             ps.setString(1, name);
             ps.setString(2, type);
-            // Get Id using getGeneratedKeys()
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            return rs.getInt(1);
-
+            ps.executeUpdate();
+            //get ID using getGeneratedKeys()
+            //https://docs.oracle.com/database/121/JJDBC/jdbcvers.htm#JJDBC28105
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                rs.next();
+                return rs.getInt(1);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
