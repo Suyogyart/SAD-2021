@@ -2,34 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a23bdc33-617b-4506-907b-da4caa081768" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/HW3/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/src/main/java/com/example/designpatterns/DesignPatternsApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW3/design-patterns/src/test/java/com/example/designpatterns/DesignPatternsApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/ReadMe.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/dao/RoleJPADao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/dao/UserJPADao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/security/MyUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/security/UserDetailsImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/service/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/service/EmailServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/validation/CustomMessageSourceConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/java/com/example/Lab2_Guide/validation/UserValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LAB2/Lab2_Guide/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,19 +28,6 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -80,6 +40,8 @@
       <workItem from="1612964375029" duration="1063000" />
       <workItem from="1612965859771" duration="19000" />
       <workItem from="1612975404613" duration="1657000" />
+      <workItem from="1614671033030" duration="41000" />
+      <workItem from="1614671100273" duration="2736000" />
     </task>
     <servers />
   </component>
@@ -96,6 +58,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
