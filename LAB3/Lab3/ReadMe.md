@@ -106,31 +106,149 @@ After changing the code.
 **Answer:**
 
 #### CascadeType.REMOVE
-This property deletes the child entities when its parent is deleted. In our coding assignment, we have
+This property deletes the child entities when its parent is deleted.
+For e.g. In our coding assignment, we have `Addresses` related with the `employee` with `@ManyToOne` relation.
+So what will happen to the addresses belonging to that employee when we delete that employee?
+Will they be available or will they be deleted too?
+
+On removal of the employee entity from the database, setting to **CascadeType.REMOVE** will also remove all the
+`Addresses` associated with that employee.
+
+It happens in such a way that, when parent entity is deleted, all its associated child elements are deleted too.
 
 
 #### orphanRemoval = true
+This property will delete alone entities from the database. Alone entities means those entities who still has some foreign key
+of some entities that is already deleted. Such entities are called orphaned entities. 
+
+Even though is cascade operation was not performed, and with deletion of parent entity, their associated child still remains,
+setting `orphanRemoval=true` will ensure that all the child entities having reference to already-deleted entities are removed as well.
+
+There is basically no need to store child entities without having their parent entities.
 
 ### d. Remove `FetchType.Lazy` and test
 > Remove lazy load from addresses and benefits, run the testFetch function. 
 > What happens? Document your findings.
 
+**Answer:**
+
+**Addresses** and **Benefits** have one-to-many and many-to-many relation with the employee entity respectively.
+
+_**When `FetchType.Lazy` was set, these were the steps happening under the hood**_
+
+![](img/lazy_fetch.png)
+
+* ` employee.getName().getFname()` method was called.
+  * Then, SQL query hit for Employee
+  * Other entities not queried yet.
+  
+
+* `employee.getAddresses().iterator().next().getId().getCity()` method was called.
+  * Then, SQL query hit for Address
+  * Benefit and User is not queried yet.
+  
+
+* `employee.getBenefits().iterator().next().getTitle()` method was called.
+  * Then, SQL query was run for Benefit.
+  * User is still not queried.
+  
+
+* `employee.getUser().getUsername()` method was called.
+  * Now, user is queried.
+
+_**Now we remove `FetchType.Lazy` from Addresses and Benefits**_
+* We run the application again, still the behavior is same as keeping `LAZY`.
+* It is because, by default, properties annotated with `@OneToMany` relation have `FetchType.LAZY`.
+
+_**Now we put `FetchType.EAGER` in Addresses and Benefits**_
+
+Now we can see the change.
+
+* Once we get the Employee, all child entities associated with it are also queried together.
+* That means, with just single call for employee entity, all its descendents are also retrieved in a single call.
+* We can observe below, no SQL query was run for `Address` and `Benefit`.
+* However, we can see the SQL queried for `User` entity, as it still has `LAZY` fetch type.
+
+![](img/eager_fetch.png)
 
 ### e. Run `testCascadeRemove` and `testCascadePersist` after removing some properties
 > Remove cascade = cascadeType.ALL and orphanRemoval = true from benefits and addresses, 
 > run the testCascadeRemove and testCascadePersist function. What happens?  
 > Document your findings.
 
+**Answer:**
+
+_**What was happening BEFORE with `CascadeType.ALL` and `orphanRemoval=true`**_
+
+* When `testCascadePersist()` method was called these were happening in sequence.
+  * SELECT all tables
+  * INSERT employee_info
+  * INSERT addresses
+  * INSERT benefits
+  * INSERT employee_info_benefits (intermediate table)
+  
+
+* When `testCascadeRemove()` method was called these were happening in sequence.
+  * SELECT Leaves (there were no leaves initially)
+  * SELECT user
+  * DELETE from employee_info_benefits (intermediate table)
+  * DELETE from address
+  * DELETE from employee_info
+  * DELETE from user
+  
+_**Now we remove `CascadeType.ALL` and `orphanRemoval=true` from Addresses and Benefits**_
+
+By default hibernate does not apply any cascade types. With these properties removed from **address**
+and **benefit**, when employee gets deleted, the change is not cascaded to the child entities. That means 
+address table would still have the row related to the deleted employee.
+
+As employee and benefits are related by many-to-many relation, they have the intermediate table. So, deleting employee
+will not delete associated child entries in the benefit table.
+
 
 ### f. Remove `@Transactional`
-> Attempt to remove @Transactional from any of the methods defined 
+> Attempt to remove **@Transactional** from any of the methods defined 
 > in the TestService.java. There are some errors. Explain why such an error happens.
 
+**Answer:**
 
-## g. Write `JUnit tests`
+First, I tried removing `@Transactional` from `testCascadePersist()` method.
+This action threw exception called `TransactionRequiredException`:
+
+```text
+Exception in thread "main" javax.persistence.TransactionRequiredException: 
+No EntityManager with actual transaction available for current thread - 
+cannot reliably process 'persist' call
+```
+
+![](img/transactional.png)
+
+It is probably due to the cross-relationships between employee with address, benefit, and users. That is,
+when we try to set addresses, benefits, users to the newly created Employee, those are the actual transactions
+made into the database. So without `@Transactional` annotation, they cannot be committed properly.
+
+Second, I tried removing `@Transactional` annotation from `testFetch()` method.
+This action threw another exception called `LazyInitializationException` worth discussing:
+
+```text
+Exception in thread "main" org.hibernate.LazyInitializationException: 
+failed to lazily initialize a collection of role: 
+com.example.Lab3.model.Employee.addresses, could not initialize proxy - no Session
+```
+
+![](img/lazy_initialization_exception.png)
+
+The addresses, benefits and user in employee entity are fetched lazily. So when we remove `@Transactional` annotation
+from the method, we get exception because it fails to initialize the lazy loaded properties.
+
+Third, I tried removing `@Transactional` annotation in other methods too.
+
+It threw `TransactionRequiredException` in case when we try to **persist**, **remove** or **create** entities.
+
+### g. Write `JUnit tests`
 > **Coding**: Transform my main program test into unit test.
 
 
-## h. Extend app to apply leave and approve leave
+### h. Extend app to apply leave and approve leave
 > **Coding**: Attempt to extend the app so that user can apply sick leave or annual leave 
 > (do not make any fancy thing, simply add leave), and admin can approve leave.
