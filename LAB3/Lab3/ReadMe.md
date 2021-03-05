@@ -103,6 +103,13 @@ After changing the code.
 > Research and discuss the difference between cascade.REMOVE and orphanRemoval=true 
 > (use your own words)
 
+**Answer:**
+
+#### CascadeType.REMOVE
+This property deletes the child entities when its parent is deleted. In our coding assignment, we have
+
+
+#### orphanRemoval = true
 
 ### d. Remove `FetchType.Lazy` and test
 > Remove lazy load from addresses and benefits, run the testFetch function. 
