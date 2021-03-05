@@ -15,7 +15,11 @@ public class SickLeave extends Leave {
 
     private int daysAllowed = 30;
 
-    public SickLeave(Employee emp, boolean approved, String remarks, LocalDate start, LocalDate end) {
+    public SickLeave(Employee emp,
+                     boolean approved,
+                     String remarks,
+                     LocalDate start,
+                     LocalDate end) {
         super(emp, approved, remarks, start, end);
     }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Note Taking</title>
+</head>
+<body>
+    <div>
+        <form th:action="@{/note}" method="post">
+            <label>
+                <textarea name="description" cols="40" rows="2"></textarea>
+            </label>
+            <br>
+            <input type="submit" value="Save Note" />
+        </form>
+    </div>
+    <h2>Notes</h2>
+    <ul th:each="n : ${notes}">
+        <li th:utext="${n.description}">note</li>
+    </ul>
+</body>
+</html>

@@ -26,6 +26,8 @@ public class Lab3Application {
 
 		// Testing cache
 		System.out.println("---- Testing Cache ----");
+		ts.testCache();
+		System.out.println("---- SLEEPING FOR 10 SECONDS NOW ----");
 		TimeUnit.SECONDS.sleep(10); // make sure cache is cleared
 		System.out.println("---- Not loaded, require query ---");
 		ts.testCache();
@@ -33,6 +35,7 @@ public class Lab3Application {
 		ts.testCache();
 		System.out.println("---- Already loaded ----");
 		ts.testCache();
+		System.out.println("---- SLEEPING FOR 10 SECONDS NOW ----");
 		TimeUnit.SECONDS.sleep(10);
 		System.out.println("---- Not Loaded, require query ----");
 		ts.testCache();

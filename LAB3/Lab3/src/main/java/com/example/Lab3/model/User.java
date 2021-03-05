@@ -28,5 +28,14 @@ public class User {
 
     private boolean active;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Employee emp;
 
+    public User(String username, String password, String role, boolean active, Employee emp) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.active = active;
+        this.emp = emp;
+    }
 }

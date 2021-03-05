@@ -54,6 +54,4 @@ public class Employee {
     @MapsId
     private User user;
 
-
-
 }
