@@ -20,8 +20,8 @@
     <cache name="employee"
            maxEntriesLocalHeap="10000"
            eternal="false"
-           timeToIdleSeconds="5"
-           timeToLiveSeconds="10">
+           timeToIdleSeconds="20"
+           timeToLiveSeconds="100">
         <persistence strategy="localTempSwap" />
     </cache>
 </ehcache>
