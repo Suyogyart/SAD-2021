@@ -2,6 +2,9 @@ package com.example.Lab3;
 
 import com.example.Lab3.model.*;
 import com.example.Lab3.repo.EmployeeRepo;
+import org.hibernate.Hibernate;
+import org.hibernate.LazyInitializationException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
@@ -27,6 +30,53 @@ class Lab3ApplicationTests {
 
 	@Test
 	void contextLoads() {
+	}
+
+	// Test Lazy Fetch
+	@Transactional
+	@Test
+	void testFetch() {
+		System.out.println("-- Loading Entities --");
+		Employee employee = em.find(Employee.class, 1);
+		System.out.println("Employee loaded: " + employee.getName().getFname());
+
+		// Test that employee fetched is Chaklam
+		Assertions.assertEquals("Chaklam", employee.getName().getFname());
+
+
+		// Test that employee addressess are not loaded yet
+		Assertions.assertFalse(Hibernate.isInitialized(employee.getAddresses()));
+		// Address is lazy load, so will not be queried unless its info is needed
+		System.out.println("-- Loading addresses --");
+		System.out.println("City addresses loaded: " + employee.getAddresses());
+
+		// Test that employee address has been loaded now
+		Assertions.assertEquals("Bangkok", employee.getAddresses().iterator().next().getId().getCity());
+		Assertions.assertEquals("Ramindra", employee.getAddresses().iterator().next().getId().getStreetAddress());
+
+
+		// Test that employee benefits are not initialized yet
+		Assertions.assertFalse(Hibernate.isInitialized(employee.getBenefits()));
+		// Benefits are lazy load
+		System.out.println("-- Loading Benefits --");
+		System.out.println("Benefits loaded: " + employee.getBenefits().iterator().next().getTitle());
+
+		// Test that employee benefits are initialized
+		Assertions.assertTrue(Hibernate.isInitialized(employee.getBenefits()));
+		Assertions.assertEquals("Benefit Free Coffee", employee.getBenefits().iterator().next().getTitle());
+
+
+		// Test that user property is not initialized yet
+		Assertions.assertFalse(Hibernate.isInitialized(employee.getUser()));
+		// User is lazy load
+		System.out.println("-- Loading User --");
+		System.out.println("User loaded: " + employee.getUser().getUsername());
+
+		// Test that user has now been initialized
+		Assertions.assertTrue(Hibernate.isInitialized(employee.getUser()));
+		// Test that user has been loaded.
+		Assertions.assertEquals("chaklam", employee.getUser().getUsername());
+
 	}
 
 	@Transactional

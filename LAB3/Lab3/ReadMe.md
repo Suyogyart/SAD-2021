@@ -247,6 +247,28 @@ It threw `TransactionRequiredException` in case when we try to **persist**, **re
 
 ### g. Write `JUnit tests`
 > **Coding**: Transform my main program test into unit test.
+**Answer:**
+
+#### Test Fetch
+Here, I added certain `Assertions` to verify the state of entities throughout the program.
+
+_**Assertions.assertEquals(expected, actual)**_
+* This method tests if the actual value equals to the expected value.
+* Here, I checked employee's name with id 1, to be "Chaklam", by accessing its `getName().getFname()` methods.
+
+_**Assertions.assertFalse(condition)**_
+* This method tests if the condition provided is false.
+* Here, I checked whether or not the property whose fetch type is LAZY, is initialized before it gets accessed or not.
+* Also, I checked after knowing for sure that it is already initialized by using `assertTrue` method.
+* The initialization state is tested by using the method `Hibernate.isInitialized()`
+
+
+![](img/test_fetch_transactional.png)
+
+If we do not add `@Transactional` annotation, then it will throw `LazyInitializationException`.
+
+![](img/lazy_initialization_exception_tests.png)
+
 
 
 ### h. Extend app to apply leave and approve leave
