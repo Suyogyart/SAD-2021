@@ -94,7 +94,7 @@ public class TestService {
         System.out.println("Employee loaded: " + employee.getName().getFname());
     }
 
-    //@Transactional
+    @Transactional
     public void testCreateLeave(int id, LeaveType type) {
         LocalDate start = LocalDate.of(2018, 2, 13);
         LocalDate end = LocalDate.of(2018, 2, 15);

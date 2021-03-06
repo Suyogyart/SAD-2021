@@ -252,3 +252,34 @@ It threw `TransactionRequiredException` in case when we try to **persist**, **re
 ### h. Extend app to apply leave and approve leave
 > **Coding**: Attempt to extend the app so that user can apply sick leave or annual leave 
 > (do not make any fancy thing, simply add leave), and admin can approve leave.
+
+**Answer:**
+#### User Sign In
+
+![](img/employee_login.png)
+
+#### User can apply for leave and view his leave statuses
+
+![](img/employee_leave.png)
+
+![](img/employee_leave_apply_code.png)
+
+#### Admin Sign In
+
+![](img/admin_login.png)
+
+#### Admin can see available UNAPPROVED leave requests
+
+![](img/admin_see_leave_requests.png)
+
+Traversing through list with nested entities.
+
+![](img/admin_approve_html_code.png)
+
+With `@Transactional` annotation, we do not have to `Save` the leave. We can simply set it's property.
+
+![](img/admin_approve_code.png)
+
+#### After admin approves a leave, Approved status changed to true
+
+![](img/employee_leave_approved.png)

@@ -1,6 +1,8 @@
 package com.example.Lab3.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @DiscriminatorValue(value = LeaveType.Values.ANNUAL)
 public class AnnualLeave extends Leave {
 
