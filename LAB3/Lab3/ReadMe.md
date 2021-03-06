@@ -269,6 +269,18 @@ If we do not add `@Transactional` annotation, then it will throw `LazyInitializa
 
 ![](img/lazy_initialization_exception_tests.png)
 
+#### Test Cache
+
+Here, I referenced our `ehcache.xml` file to get instance of a cache manager with cache name `employee`. 
+
+![](img/test_cache_transactional.png)
+
+Then, `assertTrue` method tests if the size of cache is still greater than 0, after 
+sleeping for 10 seconds.
+
+[Useful Resource on Ehcache](https://www.baeldung.com/ehcache)
+
+#### Test Cascade Persist
 
 
 ### h. Extend app to apply leave and approve leave

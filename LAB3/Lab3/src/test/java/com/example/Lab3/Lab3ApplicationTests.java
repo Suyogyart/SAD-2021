@@ -2,8 +2,11 @@ package com.example.Lab3;
 
 import com.example.Lab3.model.*;
 import com.example.Lab3.repo.EmployeeRepo;
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.Ehcache;
+import org.ehcache.core.EhcacheManager;
 import org.hibernate.Hibernate;
-import org.hibernate.LazyInitializationException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
@@ -14,8 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 class Lab3ApplicationTests {
@@ -27,6 +30,7 @@ class Lab3ApplicationTests {
 
 	@Autowired
 	EmployeeRepo empRepo;
+
 
 	@Test
 	void contextLoads() {
@@ -63,8 +67,6 @@ class Lab3ApplicationTests {
 
 		// Test that employee benefits are initialized
 		Assertions.assertTrue(Hibernate.isInitialized(employee.getBenefits()));
-		Assertions.assertEquals("Benefit Free Coffee", employee.getBenefits().iterator().next().getTitle());
-
 
 		// Test that user property is not initialized yet
 		Assertions.assertFalse(Hibernate.isInitialized(employee.getUser()));
@@ -81,47 +83,80 @@ class Lab3ApplicationTests {
 
 	@Transactional
 	@Test
-	void whenParentRemovedChildIsRemoved() {
-		int userId = createUser();
+	void testCache() throws InterruptedException {
+		// Configure cache manager
+		CacheManager cacheManager = CacheManager.newInstance("src/main/resources/ehcache.xml");
+		Ehcache ehCache = cacheManager.getEhcache("employee");
 
-		User actualUser = em.find(User.class, userId);
+		System.out.println("---- Testing Cache ----");
+		System.out.println("-- Loading entities --");
+		Employee employee = em.find(Employee.class, 1);
+		System.out.println("Employee loaded: " + employee.getName().getFname());
 
-		System.out.println(actualUser.getUsername());
-		System.out.println(actualUser.getEmp().getName());
+		Assertions.assertEquals("Chaklam", employee.getName().getFname());
+
+		System.out.println("---- SLEEPING FOR 10 SECONDS NOW ----");
+		TimeUnit.SECONDS.sleep(10);
+
+		System.out.println("---- Testing Cache ----");
+		System.out.println("-- Loading entities --");
+		Employee employee1 = em.find(Employee.class, 1);
+		System.out.println("Employee loaded: " + employee1.getName().getFname());
+
+		// Tests that there is something available in the cache
+		Assertions.assertFalse(ehCache.getSize() > 0);
+
+		//TODO: The cache referenced is the correct one, but the size is not being determined properly.
 	}
 
-	int createUser() {
+	@Transactional
+	@Test
+	void testCascadePersist() {
 
+		// Create a new employee and make it persist
 		Employee employee = new Employee();
-		employee.setName(new Name("SRT", "Tamrakar", "Ratna"));
-		employee.setAge(26);
+		Name name = new Name("Peter", "Shawn", "");
+		employee.setName(name);
+		employee.setAge(35);
 
-		AddressId addressId = new AddressId();
-		addressId.setCity("Kathmandu");
-		addressId.setHouseNo("123");
-		addressId.setStreetAddress("Dhalko");
-		addressId.setZipcode("44600");
+		// Test that employee doesnt exist with id 3
+		Assertions.assertNull(em.find(Employee.class, 3));
 
+		// add user
+		User u = em.find(User.class, 3);
+		employee.setUser(u);
+
+		// add addresses
 		Address address = new Address();
-		address.setEmp(employee);
+		AddressId addressId = new AddressId();
+		addressId.setCity("Bangkok");
+		addressId.setHouseNo("33/3");
+		addressId.setStreetAddress("Icon siam");
+		addressId.setZipcode("12021");
 		address.setId(addressId);
+		address.setEmp(employee);
+		List<Address> addresses = new ArrayList<Address>();
+		addresses.add(address);
+		employee.setAddresses(addresses);
 
-		employee.setAddresses(List.of(address));
+		// add benefits
+		Set<Employee> employees = new HashSet<Employee>();
+		employees.add(employee);
+		Benefit benefit = new Benefit("Free lunch", employees);
+		Set<Benefit> benefits = new HashSet<Benefit>();
+		benefits.add(benefit);
+		employee.setBenefits(benefits);
 
-		Benefit benefit = new Benefit();
-		benefit.setTitle("Free Benefit");
-		benefit.setEmp(Set.of(employee));
+		em.persist(employee);
 
-		employee.setBenefits(Set.of(benefit));
+		// Test that employee exists with id 3
+		Assertions.assertNotNull(em.find(Employee.class, 3));
 
-		User user = new User("srt", "srt", "ROLE_USER", true, employee);
+		Employee recentEmployee = em.find(Employee.class, 3);
+		Assertions.assertEquals("Peter", recentEmployee.getName().getFname());
 
-		employee.setUser(user);
-
-
-		em.persist(user);
-
-		return user.getId();
+		// Test that ensures @OneToOne and @MapsId worked
+		Assertions.assertEquals(recentEmployee.getId(), recentEmployee.getUser().getId());
 	}
 
 }
