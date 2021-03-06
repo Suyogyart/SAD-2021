@@ -281,7 +281,40 @@ sleeping for 10 seconds.
 [Useful Resource on Ehcache](https://www.baeldung.com/ehcache)
 
 #### Test Cascade Persist
+Here, I checked `assertNull` method to see if the `Employee` entity with id 3 is null at first.
 
+![](img/test_cascade_persist_assert1.png)
+
+Then, the employee object is persisted in the persistence context. Few more assertions are made:
+* `assertNotNull` to test that the entity persisted.
+* `assertEquals(name, name)` to test that the employee that persisted has the first name "Peter".
+* `assertEquals(id, id)` to test that the id of the persisted employee matches with the user id of the same employee.
+Passing this test also means the success of `@OneToOne`relation with `@MapsId` annotation.
+
+![](img/test_cascade_persist_assert2.png)
+
+#### Test Cascade Remove
+
+Here, I loaded Employee entity with id 1 and asserted that it is correct. Also I asserted that employee's
+addresses and benefits to see if they are currently persisted. I tested using `assertNotNull` to find the benefit
+associated with this employee.
+
+Then the employee was removed.
+
+![](img/test_cascade_remove.png)
+
+`assertNull(Employee)` method ensured that the employee was successfully deleted from the persistence context.
+
+`assertNull(Address)` method ensured that the address with composite key, i.e. `@EmbeddedId` addressId, was used to see whether we can
+find that the associated address was also removed. And yes it is because, for employee addresses,
+the CascadeType was set to ALL with orphanRemoval true.
+
+`assertNotNull(Benefit)` method ensured that even though employee was deleted, benefits associated with the employee still remains,
+because for employee benefits, the CascadeType was set to persist and merge. That is why benefits was not null.
+
+#### Running Tests
+
+![](img/test_passed.png)
 
 ### h. Extend app to apply leave and approve leave
 > **Coding**: Attempt to extend the app so that user can apply sick leave or annual leave 

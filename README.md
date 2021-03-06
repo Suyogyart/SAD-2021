@@ -25,6 +25,6 @@ Field of Study: Computer Science, 3rd Semester
     * [Guide](https://github.com/Suyogyart/SAD-2021/tree/master/LAB2/Lab2_Guide)
     * [Group Assignment](https://github.com/shubhanginigon/Bid-Buy-Sell-Project)
    
-3. LAB3: ORM, Hibernate, JPA and Spring
-   * Guide
-   * Assignment
+3. [LAB3: ORM, Hibernate, JPA and Spring](https://github.com/Suyogyart/SAD-2021/tree/master/LAB3)
+   * [Guide](https://github.com/Suyogyart/SAD-2021/tree/master/LAB3)
+   * [Take Home Tasks](https://github.com/Suyogyart/SAD-2021/tree/master/LAB3/Lab3)

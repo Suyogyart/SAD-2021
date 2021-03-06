@@ -2,15 +2,11 @@ package com.example.Lab3;
 
 import com.example.Lab3.model.*;
 import com.example.Lab3.repo.EmployeeRepo;
-import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
-import org.ehcache.core.EhcacheManager;
 import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.logging.Logger;
-import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -23,18 +19,11 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest
 class Lab3ApplicationTests {
 
-	Logger logger = LoggerFactory.getLogger(Lab3ApplicationTests.class);
-
 	@PersistenceContext
 	private EntityManager em;
 
 	@Autowired
 	EmployeeRepo empRepo;
-
-
-	@Test
-	void contextLoads() {
-	}
 
 	// Test Lazy Fetch
 	@Transactional
@@ -157,6 +146,36 @@ class Lab3ApplicationTests {
 
 		// Test that ensures @OneToOne and @MapsId worked
 		Assertions.assertEquals(recentEmployee.getId(), recentEmployee.getUser().getId());
+	}
+
+	@Transactional
+	@Test
+	void testCascadeRemove() {
+		Employee employee = em.find(Employee.class, 1);
+		System.out.println("Employee Loaded: " + employee.getName().getFname());
+
+		Assertions.assertEquals("Chaklam", employee.getName().getFname());
+		Assertions.assertEquals("Ramindra", employee.getAddresses().iterator().next().getId().getStreetAddress());
+		Assertions.assertFalse(employee.getBenefits().isEmpty());
+
+		// Test that there is benefit associated with this employee
+		Assertions.assertNotNull(em.find((Benefit.class), 1));
+
+		em.remove(employee);
+
+		AddressId addressId = new AddressId();
+		addressId.setCity("Bangkok");
+		addressId.setZipcode("10220");
+		addressId.setHouseNo("30/6");
+		addressId.setStreetAddress("Ramindra");
+
+		Assertions.assertNull(em.find(Employee.class, 1));
+
+		// Benefits will be still there, because its CascadeType is set to Persist and Merge
+		Assertions.assertNotNull(em.find((Benefit.class), 1));
+
+		// Address will be null because its CascadeType is set to ALL and orphan removal true
+		Assertions.assertNull(em.find(Address.class, addressId));
 	}
 
 }
