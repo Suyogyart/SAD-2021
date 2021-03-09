@@ -21,11 +21,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AddressService addressService;
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -68,5 +63,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userRepo.save(user);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
     }
 }
