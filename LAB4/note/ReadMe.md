@@ -1,13 +1,13 @@
 # LAB 4: Microservices + Kubernetes
 
 ## Contents
-[Note Taking Web App](##note-taking-web-app)
+[Note Taking Web App](#note-taking-web-app)
 
-[Create JAR Package](##creating-a-jar-file)
+[Create JAR Package](#creating-a-jar-file)
 
-[Containerize App using Docker](##docker-setup)
+[Containerize App using Docker](#docker-setup)
 
-[Deploying Docker container into Kubernetes](##deploying-docker-container-into-kubernetes)
+[Deploying Docker container into Kubernetes](#deploying-docker-container-into-kubernetes)
 
 ## General Dependencies
 1. **Spring Web MVC** for web interfaces.
