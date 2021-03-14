@@ -6,18 +6,35 @@ import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class NoteController {
 
     @Autowired
     private NoteService noteService;
+
     private final Parser parser = Parser.builder().build();
     private final HtmlRenderer renderer = HtmlRenderer.builder().build();
+
+    @GetMapping("/")
+    public String index(Model model) {
+        getAllNotes(model);
+        return "index";
+    }
+
+    @PostMapping("/note")
+    public String saveNotes(@RequestParam String description, Model model) {
+        saveNote(description, model);
+        getAllNotes(model);
+        return "redirect:/";
+    }
 
     private void getAllNotes(Model model) {
         List<Note> notes = noteService.getAllNotes();

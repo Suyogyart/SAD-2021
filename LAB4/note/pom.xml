@@ -58,6 +58,17 @@
 			<artifactId>commonmark</artifactId>
 			<version>0.12.1</version>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.fasterxml.jackson.dataformat</groupId>-->
+<!--			<artifactId>jackson-dataformat-xml</artifactId>-->
+<!--			<version>2.11.4</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.tomcat</groupId>-->
+<!--			<artifactId>tomcat-jasper</artifactId>-->
+<!--			<version>9.0.43</version>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
