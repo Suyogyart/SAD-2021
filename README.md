@@ -14,7 +14,10 @@ Field of Study: Computer Science, 3rd Semester
 3. [HW3: Design Patterns](https://github.com/Suyogyart/SAD-2021/tree/master/HW3) 
     * [Guide](https://github.com/Suyogyart/SAD-2021/tree/master/HW3/design-patterns) 
     * [Group Assignment](https://github.com/shubhanginigon/Bid-Buy-Sell-Project)
-4. [HW4: Domain Logic and Data Source](https://github.com/Suyogyart/SAD-2021/tree/master/HW4) 
+4. [HW4: Domain Logic and Data Source](https://github.com/Suyogyart/SAD-2021/tree/master/HW4)
+
+[comment]: <> (5. [HW5: Multi-Thread and Completable Future]&#40;https://github.com/Suyogyart/SAD-2021/tree/master/HW5&#41;)
+5. HW5: Multi-Thread and Completable Future
 
 #### Labs
 1. [LAB1: RESTful APIs, MVC with Spring Boot](https://github.com/Suyogyart/SAD-2021/tree/master/LAB1)
