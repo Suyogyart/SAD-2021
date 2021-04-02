@@ -43,7 +43,7 @@ public class CarController {
     @RequestMapping(method = RequestMethod.GET,
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
-    //@ResponseBody
+//    @ResponseBody
     public ResponseEntity getAllCars() throws InterruptedException {
 
         CompletableFuture<List<Car>> cars1 = carService.getAllCars();
@@ -60,5 +60,4 @@ public class CarController {
         LOGGER.error("Failed to read records: {}", throwable);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     };
-
 }

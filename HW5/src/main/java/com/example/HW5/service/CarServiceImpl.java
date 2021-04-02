@@ -52,8 +52,6 @@ public class CarServiceImpl implements CarService {
             LOGGER.error("Failed to parse CSV file {}", e);
             throw new Exception("Failed to parse CSV file {}", e);
         }
-
-
     }
 
     // Reads the data from the database
