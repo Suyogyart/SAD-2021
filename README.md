@@ -18,6 +18,8 @@ Field of Study: Computer Science, 3rd Semester
 
 5. [HW5: Multi-Thread and Completable Future](https://github.com/Suyogyart/SAD-2021/tree/master/HW5)
 
+6. [HW6: Optimistic and Pessimistic Locking](https://github.com/Suyogyart/SAD-2021/tree/master/HW6)
+
 #### Labs
 1. [LAB1: RESTful APIs, MVC with Spring Boot](https://github.com/Suyogyart/SAD-2021/tree/master/LAB1)
     * [Guide](https://github.com/Suyogyart/SAD-2021/tree/master/LAB1/Lab1_Guide)

@@ -14,14 +14,14 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
 
     // A PESSIMISTIC_WRITE lock request fails if another user currently holds either a
     // PESSIMISTIC_WRITE lock or a PESSIMISTIC_READ lock on that database object.
-    @Lock(LockModeType.WRITE)
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select p from Product p where p.id = :id")
     Product findProductForWrite(@Param("id") Long id);
 
 
     // A PESSIMISTIC_READ lock request fails if another user currently holds a
     // PESSIMISTIC_WRITE lock on that database object.
-    @Lock(LockModeType.READ)
+    @Lock(LockModeType.PESSIMISTIC_READ)
     @Query("select p from Product p where p.id = :id")
     Product findProductForRead(@Param("id") Long id);
 

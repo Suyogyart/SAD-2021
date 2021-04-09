@@ -36,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     @Async
     public void readLockTransaction() throws InterruptedException {
-        System.out.println(LocalTime.now() + "<-- Reading Product Entity");
+        System.out.println(LocalTime.now() + " <-- Reading Product Entity -->");
 
         Product product1 = null;
         try {
@@ -45,16 +45,18 @@ public class ProductServiceImpl implements ProductService {
             System.err.println(LocalTime.now() + "-- Got exception while " + "acquiring the read lock:\n " + e + " --");
         }
 
-        System.out.println(LocalTime.now() + " -- Acquired the read lock --");
+        System.out.println(LocalTime.now() + " -- Acquired the read lock -- ");
         System.out.println(LocalTime.now() + " -- Read product: " + product1 + " --");
+        System.out.println(" -- READ-LOCK sleeping for 10s --");
         Thread.sleep(10000);
     }
 
     @Transactional
     @Async
     public void writeLockTransaction() throws InterruptedException {
+        System.out.println(" -- WRITE-LOCK sleeping for 100ms --");
         Thread.sleep(100L);
-        System.out.println(LocalTime.now() + "<-- Writing Product Entity");
+        System.out.println(LocalTime.now() + " <-- Writing Product Entity -->");
 
         Product product2 = null;
         try {
