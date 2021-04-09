@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 public class MainLocking {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(LockingApplication.class, args);
         ProductServiceImpl ps = applicationContext.getBean(ProductServiceImpl.class);
 
