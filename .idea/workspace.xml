@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a23bdc33-617b-4506-907b-da4caa081768" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/ReadMe.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/java/com/example/session/SessionApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/test/java/com/example/session/SessionApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/resources/META-INF/additional-spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/java/com/example/session/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/java/com/example/session/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/java/com/example/session/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/java/com/example/session/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/HW7/HW7_Guide/src/main/resources/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +53,7 @@
       <workItem from="1614671100273" duration="3583000" />
       <workItem from="1617865354645" duration="49000" />
       <workItem from="1618677036077" duration="607000" />
+      <workItem from="1619197400972" duration="18000" />
     </task>
     <servers />
   </component>

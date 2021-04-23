@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "sprint.session.store-type",
+      "type": "java.lang.String",
+      "description": "Description for sprint.session.store-type."
+  }
+] }
