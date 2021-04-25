@@ -1,4 +1,4 @@
-# HW7: Spring Session Guide (Implementation using RDBMS)
+# HW7: Spring Session Guide (Implementation using JDBC)
 
 We will be making use of `HttpSession` to achieve Session management.
 Spring Session consists of the following modules:
