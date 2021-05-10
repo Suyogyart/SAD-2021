@@ -2,15 +2,16 @@ package com.st121334.FinalExam2021.controller;
 
 import com.st121334.FinalExam2021.model.Product;
 import com.st121334.FinalExam2021.service.ProductService;
-import com.st121334.FinalExam2021.service.PurchaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 public class ProductController {
@@ -19,9 +20,6 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
-
-    @Autowired
-    PurchaseService purchaseService;
 
     @GetMapping
     public ModelAndView showIndexProductListing() {

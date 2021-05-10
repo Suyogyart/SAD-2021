@@ -31,7 +31,7 @@ class FinalExam2021ApplicationTests {
 	}
 
 	// Mock methods to test locking
-//	@Test
+	@Test
 	void readLockTest() throws InterruptedException {
 
 		System.out.println(" -- WRITE-LOCK sleeping for 100ms --");
@@ -54,7 +54,7 @@ class FinalExam2021ApplicationTests {
 
 	}
 
-//	@Test
+	@Test
 	void writeLockTest() throws InterruptedException {
 
 		System.out.println(" -- WRITE-LOCK sleeping for 100ms --");
